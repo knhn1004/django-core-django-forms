@@ -21,7 +21,8 @@
   </head>
   <body>
     <div class="container">
-      <form method="GET" action="https://google.com">
+      <form method="POST" action="">
+        {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit" />
       </form>

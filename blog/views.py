@@ -4,12 +4,14 @@ from .forms import SearchForm, TestForm
 
 
 def home(req):
-    form = TestForm(req.POST or None)
-    if form.is_valid():
-        print(form.cleaned_data)
-        print(form.cleaned_data.get('some_text'))
-    # if req.method == 'POST':
-    #    pass
-    # elif req.method == 'GET':
-    #    pass
+    if req.method == 'POST':
+        form = TestForm(data=req.POST)
+        # print(req.POST)
+        # print(req.POST.get('username'))
+        if form.is_valid():
+            print(form.cleaned_data)
+            print(form.cleaned_data.get('some_text'))
+    elif req.method == 'GET':
+        form = TestForm(user=req.user)
+        print(req.GET)
     return render(req, 'form.html', {'form': form})

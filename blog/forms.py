@@ -1,4 +1,38 @@
 from django import forms
+from .models import Post
+
+
+'''
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             default=1, on_delete=models.SET_NULL,
+                             blank=True,
+                             null=True)
+    title = models.CharField(max_length=120)
+    slug = models.SlugField(unique=True)
+    image = models.FileField(upload_to=upload_location,
+                             null=True,
+                             blank=True)
+    height_field = models.IntegerField(default=0)
+    width_field = models.IntegerField(default=0)
+    content = models.TextField()
+    draft = models.BooleanField(default=False)
+    publish = models.DateField(auto_now=False, auto_now_add=False)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+'''
+
+
+class PostModelForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['user', 'title', 'slug', 'image']
+        #exclude = ['height_field']
+
+        def clean_title(self, *args, **kwargs):
+            title = self.cleaned_data.get('title')
+            print(title)
+            raise forms.ValidationError('nope')
+            # return title
 
 
 class SearchForm(forms.Form):

@@ -22,4 +22,18 @@ def home(req):
         obj.title = "Some random title"
         obj.publish = timezone.now()
         obj.save()
+
+    if form.has_error:
+        # print(form.errors.as_json())
+        # print(form.errors.as_text())
+
+        data = form.errors.items()
+        for key, value in data:
+            #print(key, value)
+            # print(dir(value))
+
+            error_str = f"{key}: {value.as_text()}"
+            print(error_str)
+        print(dir(form.errors))
+
     return render(req, 'form.html', {'form': form})

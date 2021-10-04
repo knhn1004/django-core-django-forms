@@ -22,8 +22,9 @@
   <body>
     <div class="container">
       <form method="GET" action="https://google.com">
-        <input type="text" name="q" placeholder="Search" />
-        <input type="submit" value="Search" />
+        {% comment %}<input type="text" name="q" placeholder="Search" />
+        <input type="submit" value="Search" />{% endcomment %}
+        {% block content %}{% endblock content %}
       </form>
     </div>
   </body>

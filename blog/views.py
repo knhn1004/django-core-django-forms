@@ -5,6 +5,10 @@ from django.utils import timezone
 from .forms import SearchForm, TestForm, PostModelForm
 
 
+def formset_view(req):
+    return render(req, 'formset_view.html', {})
+
+
 def home(req):
     # if req.method == 'POST':
     #    form = TestForm(data=req.POST)

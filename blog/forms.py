@@ -28,11 +28,25 @@ class PostModelForm(forms.ModelForm):
         fields = ['user', 'title', 'slug', 'image']
         #exclude = ['height_field']
 
-        def clean_title(self, *args, **kwargs):
-            title = self.cleaned_data.get('title')
-            print(title)
-            raise forms.ValidationError('nope')
-            # return title
+    def clean_title(self, *args, **kwargs):
+        title = self.cleaned_data.get('title')
+        print(title)
+        #raise forms.ValidationError('nope')
+        return title
+
+    def save(self, commit=True, *args, **kwargs):
+        ''' not recommended '''
+        obj = super(PostModelForm, self).save(
+            commit=False, *args, **kwargs)
+
+        obj.publish = '2016-10-01'
+        obj.content = 'Coming Soon'
+        #obj.title = slugify(self.title)
+
+        if commit:
+            obj.save()
+
+        return obj
 
 
 class SearchForm(forms.Form):

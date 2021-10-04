@@ -1,12 +1,24 @@
+#from django.forms.formsets import formset_factory
 from django.http import request
 from django.shortcuts import render
 from django.utils import timezone
+from django.forms import formset_factory, modelformset_factory
 
 from .forms import SearchForm, TestForm, PostModelForm
 
 
 def formset_view(req):
-    return render(req, 'formset_view.html', {})
+    TestFormset = formset_factory(TestForm)
+    formset = TestFormset(req.POST or None)
+
+    if formset.is_valid():
+        for form in formset:
+            print(form.cleaned_data)
+
+    context = {
+        'formset': formset
+    }
+    return render(req, 'formset_view.html', context)
 
 
 def home(req):

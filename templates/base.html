@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Django Forms - Django Core</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css"
@@ -21,11 +21,7 @@
   </head>
   <body>
     <div class="container">
-      <form method="GET" action="https://google.com">
-        {% comment %}<input type="text" name="q" placeholder="Search" />
-        <input type="submit" value="Search" />{% endcomment %}
-        {% block content %}{% endblock content %}
-      </form>
+      {% block content %}{% endblock content %}
     </div>
   </body>
 </html>

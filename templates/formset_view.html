@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Formset View</h1>
+<h1>Formset View</h1>
+<form action="" method="POST">
+	{% csrf_token %}
+	{{ formset.management_form }}
+	{% comment %}{{ formset.as_p }}{% endcomment %}
+	{% for form in formset  %}
+	<div>
+		{{ formset.as_p }}
+		<hr />
+	</div>
+	{% endfor %}
+	<input type="submit" value="Submit">
+</form>
 {% endblock content %}

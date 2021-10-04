@@ -25,7 +25,7 @@ from .models import Post
 class PostModelForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['user', 'title', 'slug', 'image']
+        fields = ['user', 'title', 'slug', 'image', ]
         #exclude = ['height_field']
 
     def clean_title(self, *args, **kwargs):

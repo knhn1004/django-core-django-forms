@@ -1,5 +1,7 @@
 from django.http import request
 from django.shortcuts import render
+from django.utils import timezone
+
 from .forms import SearchForm, TestForm, PostModelForm
 
 
@@ -16,5 +18,8 @@ def home(req):
     #    print(req.GET)
     form = PostModelForm(req.POST or None)
     if form.is_valid():
-        form.save()
+        obj = form.save(commit=False)
+        obj.title = "Some random title"
+        obj.publish = timezone.now()
+        obj.save()
     return render(req, 'form.html', {'form': form})

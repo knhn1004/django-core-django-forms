@@ -1,0 +1,31 @@
+<form method="POST" action="">
+	{% csrf_token %}
+	{% comment %}{{ form.as_p }}{% endcomment %}
+	{% if as_p %}
+		{{ form.as_p }}
+	{% elif as_text %}
+		{{ form.as_text }}
+	{% else %}
+		{% if form.errors %}
+			{{ form.non_field_errors }}
+		{% endif %}
+
+		{% for key, value in form.errors.items  %}
+			<p>{{ key }}: {{ value.as_text }}</p>
+		{% endfor %}
+
+		<p>{{ form.user }}</p>
+		<p {% if form.title.errors %}class="some-field-error"{% endif %}>
+		<label for="{{ form.title.id_for_label}}">{{ form.title.label }}</label>
+		{{ form.title }}
+		{% if form.title.errors %}
+			<div style="color: red;">{{ form.title.errors.as_text }}</div>
+		{% endif %}
+		</p>
+
+		<p>{{ form.slug }}</p>
+		<p>{{ form.image }}</p>
+		<input type="submit" value="Submit" />
+	{% endif %}
+
+</form>
